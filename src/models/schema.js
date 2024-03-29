@@ -1,13 +1,16 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const dotenv = require('dotenv').config();
-const sequelize = new Sequelize('FOS', 'postgres', process.env.DB_PASSWORD, {
-  dialect: 'postgres',
-  host: 'localhost',
-  port: 5432, 
-  logging: false, 
+// const sequelize = new Sequelize('FOS', 'postgres', process.env.DB_PASSWORD, {
+//   dialect: 'postgres',
+//   host: process.env.DB_HOST,
+
+//   port: process.env.DB_PORT,
+//   logging: false,
+// });
+const postgresURL = process.env.DB_URL;
+const sequelize = new Sequelize(postgresURL, {
+  dialect: 'postgres', // Explicitly specify the dialect
 });
-
-
 const Organization = sequelize.define(
   'Organization',
   {

@@ -40,16 +40,18 @@ const swaggerSpec=swaggerJSDoc(options)
 app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerSpec))
 
 
+const postgresURL = process.env.DB_URL;
 
-
-const sequelize = new Sequelize({
-  dialect: 'postgres',
-  host: 'localhost',
-  username: 'postgres',
-  password: process.env.DB_PASSWORD,
-  database: 'FOS',
+// const sequelize = new Sequelize({
+//   dialect: 'postgres',
+//   host: process.env.DB_HOST,
+//   username: 'postgres',
+//   password: process.env.DB_PASSWORD,
+//   database: 'FOS',
+// });
+const sequelize = new Sequelize(postgresURL, {
+  dialect: 'postgres', // Explicitly specify the dialect
 });
-
 // Test database connection
 sequelize
   .authenticate()

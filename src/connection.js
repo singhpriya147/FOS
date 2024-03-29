@@ -1,11 +1,10 @@
 const { Client } = require('pg');
+const dotenv = require('dotenv').config();
+// PostgreSQL connection URL format
 
+const postgresURL = process.env.DB_URL;
 const client = new Client({
-  host: 'localhost',
-  user: 'postgres',
-  port: 5432,
-  password: 'Priya@147',
-  database: 'FOS',
+  connectionString: postgresURL, // Use the connection URL
 });
 
 module.exports = client;
